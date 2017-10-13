@@ -18,3 +18,15 @@ $ composer require devgeniem/wp-stateless-bucket-link-filter
 ```
 
 ## Usage
+
+### WP_STATELESS_BUCKET_LINK_REPLACE
+
+The bucket link in WP Stateless Media Plugin replaces all upload urls. Define this constant to replace the default bucket link `https://storage.googleapis.com/{bucket-name}/`.
+
+**Example:**
+
+```
+// This will set the bucket link point to 'https://my-test-site.test/uploads/'
+define( 'WP_STATELESS_BUCKET_LINK_REPLACE', 'https://my-test-site.test/uploads' );
+```
+
