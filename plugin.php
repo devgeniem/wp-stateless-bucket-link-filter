@@ -35,5 +35,5 @@ if ( defined( 'WP_STATELESS_BUCKET_LINK_REPLACE' ) ) {
         $replaced = str_replace( $new_bucket_url, $bucket_url, $attachment_url );
 
         return $replaced;
-    }, 11, 3 );
+    }, 11, 1 );
 }
