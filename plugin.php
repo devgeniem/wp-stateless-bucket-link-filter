@@ -2,7 +2,7 @@
 /**
  * Plugin Name: WP Stateless Bucket Link Filter
  * Description: A must-use plugin enabling filtering the WP Stateless bucket link with a PHP constant.
- * Version: 1.0.0
+ * Version: 1.1.0
  * Plugin URI: https://github.com/devgeniem/wp-stateless-bucket-name-filter
  * Author: Ville Siltala / Geniem Oy
  * Author URI: https://github.com/devgeniem
