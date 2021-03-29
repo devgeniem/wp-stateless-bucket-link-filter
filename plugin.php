@@ -1,35 +1,39 @@
 <?php
 /**
  * Plugin Name: WP Stateless Bucket Link Filter
- * Description: Plugin which enables filtering the WP Stateless bucket link with a PHP constant.
- * Version: 1.0.0
+ * Description: A must-use plugin enabling filtering the WP Stateless bucket link with a PHP constant.
+ * Version: 1.1.0
  * Plugin URI: https://github.com/devgeniem/wp-stateless-bucket-name-filter
  * Author: Ville Siltala / Geniem Oy
- * Author URI: https://github.com/villesiltala
+ * Author URI: https://github.com/devgeniem
  * License: GPLv3
  */
 
 namespace Geniem;
 
 /**
- * Filter the WP Statelss bucket link filter.
+ * Activate plugin features if the replacement is set.
  */
 if ( defined( 'WP_STATELESS_BUCKET_LINK_REPLACE' ) ) {
-    add_filter( 'wp_stateless_bucket_link', function( $link ) {
+    // Ensure no trailing forward slash.
+    $new_bucket_url = rtrim( WP_STATELESS_BUCKET_LINK_REPLACE, '/' );
 
-        if ( function_exists( 'ud_get_stateless_media' ) ) {
-            // Get the bucket name.
-            $bucket_name = ud_get_stateless_media()->get( 'sm.bucket' );
+    // Filter the Stateless' Google Storage host.
+    add_filter( 'get_gs_host', function() use ( $new_bucket_url ) {
+        return $new_bucket_url;
+    }, 11, 0 );
 
-            // This is the default link.
-            $default = 'https://storage.googleapis.com/' . $bucket_name;
-
-            // Get the constant and remove an unwanted trailing slash.
-            $replace = rtrim( WP_STATELESS_BUCKET_LINK_REPLACE, '/' );
-
-            return str_replace( $default, $replace, $link );
+    // Filter URL to point back to Google Storage when loading images for edit.
+    add_filter( 'load_image_to_edit_attachmenturl', function( $attachment_url ) use ( $new_bucket_url ) {
+        if ( ! function_exists( 'ud_get_stateless_media' ) ) {
+            return $attachment_url;
         }
 
-        return $link;
-    });
+        $bucket_name = \ud_get_stateless_media()->get( 'sm.bucket' );
+        $bucket_url  = 'https://storage.googleapis.com/' . $bucket_name;
+
+        $replaced = str_replace( $new_bucket_url, $bucket_url, $attachment_url );
+
+        return $replaced;
+    }, 11, 1 );
 }
