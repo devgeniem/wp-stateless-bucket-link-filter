@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [1.1.0] - 2021-03-29
+
 ### Changed
 - Changed the main filter for replacing upload URLs from `wp_stateless_bucket_link` to `get_gs_host`.
 
