@@ -10,6 +10,12 @@
             "email" : "ville.siltala@geniem.com",
             "homepage" : "http://github.com/villesiltala",
             "role" : "Developer"
+        },
+        {
+            "name" : "Miika Arponen",
+            "email" : "miika@geniem.com",
+            "homepage" : "http://github.com/Nomafin",
+            "role" : "Developer"
         }
     ],
     "support" : {

@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+### Changed
+- The plugin to be in a class form to enable removing the filters.
+
 ## [1.1.0] - 2021-03-29
 
 ### Changed
