@@ -4,7 +4,7 @@
  * Description: A must-use plugin enabling filtering the WP Stateless bucket link with a PHP constant.
  * Version: 1.2.0
  * Plugin URI: https://github.com/devgeniem/wp-stateless-bucket-name-filter
- * Author: Ville Siltala / Geniem Oy
+ * Author: Ville Siltala & Miika Arponen / Geniem Oy
  * Author URI: https://github.com/devgeniem
  * License: GPLv3
  */
@@ -30,7 +30,7 @@ if ( defined( 'WP_STATELESS_BUCKET_LINK_REPLACE' ) ) {
          */
         public static function get_gs_host() {
             // Ensure no trailing forward slash.
-            return rtrim( WP_STATELESS_BUCKET_LINK_REPLACE, '/' );
+            return rtrim( \WP_STATELESS_BUCKET_LINK_REPLACE, '/' );
         }
 
         /**
@@ -48,7 +48,7 @@ if ( defined( 'WP_STATELESS_BUCKET_LINK_REPLACE' ) ) {
             $bucket_url  = 'https://storage.googleapis.com/' . $bucket_name;
 
             $replaced = str_replace(
-                rtrim( WP_STATELESS_BUCKET_LINK_REPLACE, '/' ),
+                rtrim( \WP_STATELESS_BUCKET_LINK_REPLACE, '/' ),
                 $bucket_url,
                 $attachment_url
             );
